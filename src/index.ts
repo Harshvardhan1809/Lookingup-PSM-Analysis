@@ -1,7 +1,7 @@
 var XLSX = require("xlsx");
 import intersection_calculator from "./intersection_calculator.js";
 import range_finder from "./range_finder.js";
-import 
+ 
 
 //// READ ALL DATA FROM CSV 
 const unitPrice = 50;
