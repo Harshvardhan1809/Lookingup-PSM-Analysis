@@ -1,4 +1,6 @@
-const range_finder = (scale: number[], yasuiKaitouritsu: number[], takaiKaitouritsu: number[]) => {
+import { kaitouritsuData } from "../utilities/types";
+
+const range_finder = (scale: number[], yasuiKaitouritsu: kaitouritsuData, takaiKaitouritsu: kaitouritsuData) => {
 
     // if yasuikaitouritsu becomes greater than takaikaitouritsu; i.e. the parity switches
 

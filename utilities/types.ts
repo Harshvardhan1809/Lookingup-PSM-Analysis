@@ -1,2 +1,7 @@
+type priceData = number[];
+type kaitouritsuData = number[];
 
-export type priceData = number[];
+type kakakuIndex = number;
+type kakaku = number;
+
+export { priceData, kaitouritsuData, kakakuIndex, kakaku };

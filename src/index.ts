@@ -1,7 +1,7 @@
 var XLSX = require("xlsx");
 import intersection_calculator from "./intersection_calculator.js";
 import range_finder from "./range_finder.js";
- 
+import { priceData, kaitouritsuData, kakakuIndex, kakaku } from "./../utilities/types";
 
 //// READ ALL DATA FROM CSV 
 const unitPrice = 50;
@@ -9,10 +9,10 @@ const data = XLSX.readFile("PSMrawdata.csv");
 let sheetData = data["Sheets"];
 sheetData = sheetData["Sheet1"];
 
-const expensiveData: number[] = [];
-const cheapData: number[] = [];
-const tooExpensiveData: number[] = [];
-const tooCheapData: number[] = [];
+const expensiveData: priceData = [];
+const cheapData: priceData = [];
+const tooExpensiveData: priceData = [];
+const tooCheapData: priceData = [];
 
 for (let [key, val] of Object.entries(sheetData)) {
   let value = sheetData[key];
@@ -36,7 +36,7 @@ const sampleSize = expensiveData.length;
 
 // next step: create X-axis 0 to maxValue with unit as 50yen // cheap - 50, ..... 600
 // kaitouritsu:
-const scale = [];
+const scale: number[] = [];
 for (let i = 1; i < maxValue / unitPrice + 1; i++) {
   scale.push(unitPrice * i);
 }
@@ -44,10 +44,10 @@ for (let i = 1; i < maxValue / unitPrice + 1; i++) {
 
 
 // CALCULATE KAITOURITSU FOR EACH TYPE
-const kaitouritsu_expensive = Array(scale.length).fill(0);
-const kaitouritsu_cheap = Array(scale.length).fill(0);
-const kaitouritsu_tooExpensive = Array(scale.length).fill(0);
-const kaitouritsu_tooCheap = Array(scale.length).fill(0);
+const kaitouritsu_expensive: kaitouritsuData = Array(scale.length).fill(0);
+const kaitouritsu_cheap: kaitouritsuData = Array(scale.length).fill(0);
+const kaitouritsu_tooExpensive: kaitouritsuData = Array(scale.length).fill(0);
+const kaitouritsu_tooCheap: kaitouritsuData = Array(scale.length).fill(0);
 // calculate values for cheap
 for (let i = 0; i < sampleSize; i++) {
   for (let j = scale.length - 1; j >= 0; j--) {
@@ -86,21 +86,21 @@ for (let i = 0; i < scale.length; i++) {
 
 
 // find the 理想価格 - too cheap and too expensive
-let risouKakakuIndex = range_finder(scale, kaitouritsu_tooCheap, kaitouritsu_tooExpensive);
-let risouKakaku = intersection_calculator(risouKakakuIndex, scale, kaitouritsu_tooCheap, kaitouritsu_tooExpensive);
+let risouKakakuIndex: kakakuIndex = range_finder(scale, kaitouritsu_tooCheap, kaitouritsu_tooExpensive);
+let risouKakaku: kakaku = intersection_calculator(risouKakakuIndex, scale, kaitouritsu_tooCheap, kaitouritsu_tooExpensive);
 
 // find the 妥協価格 - cheap and expensive
 
-let dakyouKakakuIndex = range_finder(scale, kaitouritsu_cheap, kaitouritsu_expensive);
-let dakyouKakaku = intersection_calculator(dakyouKakakuIndex, scale, kaitouritsu_cheap, kaitouritsu_expensive);
+let dakyouKakakuIndex: kakakuIndex = range_finder(scale, kaitouritsu_cheap, kaitouritsu_expensive);
+let dakyouKakaku: kakaku = intersection_calculator(dakyouKakakuIndex, scale, kaitouritsu_cheap, kaitouritsu_expensive);
 
 // find the 最高価格 - cheap and too expensive
-let saikouKakakuIndex = range_finder(scale, kaitouritsu_cheap, kaitouritsu_tooExpensive);
-let saikouKakaku = intersection_calculator(saikouKakakuIndex, scale, kaitouritsu_cheap, kaitouritsu_tooExpensive);
+let saikouKakakuIndex: kakakuIndex = range_finder(scale, kaitouritsu_cheap, kaitouritsu_tooExpensive);
+let saikouKakaku: kakaku = intersection_calculator(saikouKakakuIndex, scale, kaitouritsu_cheap, kaitouritsu_tooExpensive);
 
 // find the 最低品質保証価格 - too cheap and expensive
-let saiteiKakakuIndex = range_finder(scale, kaitouritsu_tooCheap, kaitouritsu_expensive);
-let saiteiKakaku = intersection_calculator(saiteiKakakuIndex, scale, kaitouritsu_tooCheap, kaitouritsu_expensive);
+let saiteiKakakuIndex: kakakuIndex = range_finder(scale, kaitouritsu_tooCheap, kaitouritsu_expensive);
+let saiteiKakaku: kakaku = intersection_calculator(saiteiKakakuIndex, scale, kaitouritsu_tooCheap, kaitouritsu_expensive);
 
 
 
