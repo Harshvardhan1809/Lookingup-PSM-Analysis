@@ -1,13 +1,13 @@
 var XLSX = require("xlsx");
 import intersection_calculator from "./intersection_calculator.js";
 import range_finder from "./range_finder.js";
-import { priceData, kaitouritsuData, kakakuIndex, kakaku } from "./../utilities/types";
+import { priceData, kaitouritsuData, kakakuIndex, kakaku, sheetDataType, sheetRowData } from "./../utilities/types";
 
 //// READ ALL DATA FROM CSV 
 const unitPrice = 50;
 const data = XLSX.readFile("PSMrawdata.csv");
-let sheetData = data["Sheets"];
-sheetData = sheetData["Sheet1"];
+let sheetData : sheetDataType = data["Sheets"]["Sheet1"];
+console.log(sheetData);
 
 const expensiveData: priceData = [];
 const cheapData: priceData = [];
@@ -15,7 +15,7 @@ const tooExpensiveData: priceData = [];
 const tooCheapData: priceData = [];
 
 for (let [key, val] of Object.entries(sheetData)) {
-  let value = sheetData[key];
+  let value: sheetRowData = sheetData[key];
   if (key[0] == "B" && value.t === "n") expensiveData.push(value.v);
   else if (key[0] == "C" && value.t === "n") cheapData.push(value.v);
   else if (key[0] == "D" && value.t === "n") tooExpensiveData.push(value.v);

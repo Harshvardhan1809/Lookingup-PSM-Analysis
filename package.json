@@ -6,7 +6,7 @@
   "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx tsc --outDir ./out ./src/index.ts && node ./out/index.js"
+    "dev": "npx tsc --outDir ./out ./src/index.ts && node ./out/src/index.js"
   },
   "keywords": [],
   "author": "",

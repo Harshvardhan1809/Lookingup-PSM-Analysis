@@ -4,4 +4,14 @@ type kaitouritsuData = number[];
 type kakakuIndex = number;
 type kakaku = number;
 
-export { priceData, kaitouritsuData, kakakuIndex, kakaku };
+type sheetRowData = {
+    t: string,
+    w?: string,
+    v: number
+}
+
+type sheetDataType = {
+    [key: string] : sheetRowData, 
+}
+
+export { priceData, kaitouritsuData, kakakuIndex, kakaku, sheetDataType, sheetRowData };

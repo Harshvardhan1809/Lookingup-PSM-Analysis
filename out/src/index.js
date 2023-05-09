@@ -6,8 +6,8 @@ var range_finder_js_1 = require("./range_finder.js");
 //// READ ALL DATA FROM CSV 
 var unitPrice = 50;
 var data = XLSX.readFile("PSMrawdata.csv");
-var sheetData = data["Sheets"];
-sheetData = sheetData["Sheet1"];
+var sheetData = data["Sheets"]["Sheet1"];
+console.log(sheetData);
 var expensiveData = [];
 var cheapData = [];
 var tooExpensiveData = [];
