@@ -1,0 +1,2 @@
+
+export type priceData = number[];

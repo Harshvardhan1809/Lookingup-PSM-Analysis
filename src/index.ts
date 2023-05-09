@@ -1,7 +1,7 @@
 var XLSX = require("xlsx");
 import intersection_calculator from "./intersection_calculator.js";
 import range_finder from "./range_finder.js";
-
+import 
 
 //// READ ALL DATA FROM CSV 
 const unitPrice = 50;
@@ -9,10 +9,10 @@ const data = XLSX.readFile("PSMrawdata.csv");
 let sheetData = data["Sheets"];
 sheetData = sheetData["Sheet1"];
 
-const expensiveData = [];
-const cheapData = [];
-const tooExpensiveData = [];
-const tooCheapData = [];
+const expensiveData: number[] = [];
+const cheapData: number[] = [];
+const tooExpensiveData: number[] = [];
+const tooCheapData: number[] = [];
 
 for (let [key, val] of Object.entries(sheetData)) {
   let value = sheetData[key];
@@ -24,7 +24,7 @@ for (let [key, val] of Object.entries(sheetData)) {
 
 
 //// MAKE THE SCALE FOR THE X-AXIS
-const maxSamples = [];
+const maxSamples: number[] = [];
 // maxSamples finds the max input value to create the scale
 maxSamples.push(Math.max(...expensiveData));
 maxSamples.push(Math.max(...cheapData));
