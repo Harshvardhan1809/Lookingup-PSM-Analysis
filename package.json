@@ -3,15 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node ./src/index.js"
+    "dev": "npx tsc --outDir ./out ./src/index.ts && node ./out/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "typescript": "^5.0.4",
     "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.1.1"
   }
 }
