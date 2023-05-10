@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var intersection_calculator = function (index, scale, cheapKaitouritsu, expensiveKaitouritsu) {
+var intersection_calculator = function (index, scale, cheapAnswerRate, expensiveAnswerRate) {
     // x3,x4 negative slope; cheap curve
-    var y1 = expensiveKaitouritsu[index - 1];
-    var y2 = expensiveKaitouritsu[index];
-    var y3 = cheapKaitouritsu[index - 1];
-    var y4 = cheapKaitouritsu[index];
+    var y1 = expensiveAnswerRate[index - 1];
+    var y2 = expensiveAnswerRate[index];
+    var y3 = cheapAnswerRate[index - 1];
+    var y4 = cheapAnswerRate[index];
     var x1 = scale[index - 1];
     var x2 = scale[index];
     var x3 = scale[index - 1];

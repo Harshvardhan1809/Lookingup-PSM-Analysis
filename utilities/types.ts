@@ -1,8 +1,3 @@
-type priceData = number[];
-type kaitouritsuData = number[];
-
-type kakakuIndex = number;
-type kakaku = number;
 
 type sheetRowData = {
     t: string,
@@ -25,16 +20,24 @@ type rowRSMData = {
 
 type rsmData = {
     data: rowRSMData[],
-    risouKakaku : number,
-    dakyouKakaku : number,
-    saikouKakaku : number,
-    saiteiKakaku : number
+    idealPrice : number,
+    compromisePrice : number,
+    highestPrice : number,
+    lowestPrice : number
 }
 
-type kaitouritsuAllData = {
-    kaitouritsu_expensive: number[],
-    kaitouritsu_cheap: number[],
-    kaitouritsu_tooExpensive: number[],
-    kaitouritsu_tooCheap: number[],
+type answerRateAllData = {
+    answerRateExpensive: number[],
+    answerRateCheap: number[],
+    answerRateTooExpensive: number[],
+    answerRateTooCheap: number[],
 }
-export { priceData, kaitouritsuData, kakakuIndex, kakaku, sheetRowData, sheetDataType, rowRSMData, rsmData, kaitouritsuAllData };
+
+type priceObject = {
+    idealPrice: number,
+    compromisePrice: number,
+    highestPrice: number,
+    lowestPrice: number
+}
+
+export { sheetRowData, sheetDataType, rowRSMData, rsmData, answerRateAllData, priceObject };
