@@ -15,3 +15,11 @@ type sheetDataType = {
 }
 
 export { priceData, kaitouritsuData, kakakuIndex, kakaku, sheetDataType, sheetRowData };
+
+// remodel types to exploit the capabilities of typescript
+
+type kakakuValues = {
+    index: number,
+    value: number
+}
+

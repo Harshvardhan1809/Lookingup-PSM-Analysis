@@ -3,6 +3,8 @@ import intersection_calculator from "./intersection_calculator.js";
 import range_finder from "./range_finder.js";
 import { priceData, kaitouritsuData, kakakuIndex, kakaku, sheetDataType, sheetRowData } from "./../utilities/types";
 
+// improvements - exploit type creation to the max, categorise data as rows, get rid of 4 function calls, rename objects in english
+
 //// READ ALL DATA FROM CSV 
 const unitPrice = 50;
 const data = XLSX.readFile("PSMrawdata.csv");
@@ -21,7 +23,6 @@ for (let [key, val] of Object.entries(sheetData)) {
   else if (key[0] == "D" && value.t === "n") tooExpensiveData.push(value.v);
   else if (key[0] == "E" && value.t === "n") tooCheapData.push(value.v);
 }
-
 
 //// MAKE THE SCALE FOR THE X-AXIS
 const maxSamples: number[] = [];
