@@ -12,6 +12,15 @@
         "project": "./tsconfig.json"
     },
     "rules": {
-        "@typescript-eslint/naming-conv" : "off",
+        "prettier/prettier" : [
+            "error",
+            {
+                "printWidth": 120,
+                "singleQuote": false,
+                "semi": true,
+                "useTabs": true,
+                "quoteProps": "consistent"
+            }
+        ]
     }
 }
