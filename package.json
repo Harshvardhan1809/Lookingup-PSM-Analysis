@@ -6,7 +6,7 @@
   "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx tsc --outDir ./out ./src/index.ts && node ./out/src/index.js",
+    "dev": "tsc --outDir ./out ./src/index.ts && node ./out/src/index.js",
     "eslint": "eslint --fix 'src/**/*.ts'"
   },
   "keywords": [],

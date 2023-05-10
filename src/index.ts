@@ -13,11 +13,11 @@ import {
 
 const XLSX = require("xlsx");
 
-/// / READ ALL DATA FROM CSV
+//// READ ALL DATA FROM CSV
 const unitPrice = 50;
 const data = XLSX.readFile("PSMrawdata.csv");
 const sheetData: sheetDataType = data.Sheets.Sheet1;
-console.log(sheetData);
+// console.log(sheetData);
 
 const rsmData: rsmData = {
 	data: [],

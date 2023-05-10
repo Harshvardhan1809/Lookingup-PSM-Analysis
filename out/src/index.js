@@ -4,11 +4,11 @@ var max_data_value_calculator_1 = require("./max_data_value_calculator");
 var price_finder_js_1 = require("./price_finder.js");
 var answer_rate_calculator_1 = require("./answer_rate_calculator");
 var XLSX = require("xlsx");
-/// / READ ALL DATA FROM CSV
+//// READ ALL DATA FROM CSV
 var unitPrice = 50;
 var data = XLSX.readFile("PSMrawdata.csv");
 var sheetData = data.Sheets.Sheet1;
-console.log(sheetData);
+// console.log(sheetData);
 var rsmData = {
     data: [],
     idealPrice: 0,
