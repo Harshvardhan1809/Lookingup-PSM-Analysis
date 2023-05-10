@@ -14,14 +14,7 @@ type sheetDataType = {
     [key: string] : sheetRowData, 
 }
 
-export { priceData, kaitouritsuData, kakakuIndex, kakaku, sheetDataType, sheetRowData };
-
 // remodel types to exploit the capabilities of typescript
-
-type kakakuValues = {
-    index: number,
-    value: number
-}
 
 type rowRSMData = {
     expensiveData : number,
@@ -31,5 +24,17 @@ type rowRSMData = {
 }
 
 type rsmData = {
-
+    data: rowRSMData[],
+    risouKakaku : number,
+    dakyouKakaku : number,
+    saikouKakaku : number,
+    saiteiKakaku : number
 }
+
+type kaitouritsuAllData = {
+    kaitouritsu_expensive: number[],
+    kaitouritsu_cheap: number[],
+    kaitouritsu_tooExpensive: number[],
+    kaitouritsu_tooCheap: number[],
+}
+export { priceData, kaitouritsuData, kakakuIndex, kakaku, sheetRowData, sheetDataType, rowRSMData, rsmData, kaitouritsuAllData };
