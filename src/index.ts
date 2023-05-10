@@ -1,7 +1,10 @@
 var XLSX = require("xlsx");
+
 import max_data_value_calculator from "./max_data_value_calculator";
-import { sheetRowData, sheetDataType, rowRSMData, rsmData, answerRateAllData, priceObject } from "./../utilities/types";
 import price_finder from "./price_finder.js";
+import answer_rate_calculator from "./answer_rate_calculator";
+
+import { sheetRowData, sheetDataType, rowRSMData, rsmData, answerRateAllData, priceObject } from "./../utilities/types";
 
 
 //// READ ALL DATA FROM CSV 
@@ -47,36 +50,11 @@ for (let [key, val] of Object.entries(sheetData)) {
 const maxValue = max_data_value_calculator(rsmData);
 const sampleSize = rsmData["data"].length;
 const scale: number[] = [];
-for (let i = 1; i < maxValue / unitPrice + 1; i++) {
-  scale.push(unitPrice * i);
-}
+for (let i = 1; i < maxValue / unitPrice + 1; i++) scale.push(unitPrice * i);
 
 
-// CALCULATE KAITOURITSU FOR EACH TYPE
-const answerRateData : answerRateAllData = {
-  answerRateExpensive: Array(scale.length).fill(0),
-  answerRateCheap: Array(scale.length).fill(0),
-  answerRateTooExpensive: Array(scale.length).fill(0),
-  answerRateTooCheap: Array(scale.length).fill(0),
-}
-
-for (let i=0; i< sampleSize; i++){
-  for(let j = scale.length-1; j>=0; j--){
-    const {expensiveData: e, cheapData : c, tooExpensiveData : te,tooCheapData : tc} = rsmData["data"][i];
-    if (c >= scale[j]) answerRateData["answerRateCheap"][j] += (1 / sampleSize) * 100;
-    if (e <= scale[j]) answerRateData["answerRateExpensive"][j] += (1 / sampleSize) * 100;
-    if (tc >= scale[j]) answerRateData["answerRateTooCheap"][j] += (1 / sampleSize) * 100;
-    if (te <= scale[j]) answerRateData["answerRateTooExpensive"][j] += (1 / sampleSize) * 100;
-  }
-}
-
-// round the result of all kaitouritsu to 3 digits
-for (let i = 0; i < scale.length; i++) {
-  answerRateData["answerRateCheap"][i] = Number(answerRateData["answerRateCheap"][i].toFixed(1));
-  answerRateData["answerRateTooCheap"][i] = Number(answerRateData["answerRateTooCheap"][i].toFixed(1));
-  answerRateData["answerRateExpensive"][i] = Number(answerRateData["answerRateExpensive"][i].toFixed(1));
-  answerRateData["answerRateTooExpensive"][i] = Number(answerRateData["answerRateTooExpensive"][i].toFixed(1));
-}
+//// CALCULATE ANSWER RATE FOR EACH TYPE
+const answerRateData: answerRateAllData = answer_rate_calculator(scale, sampleSize, rsmData);
 
 
 // FIND ALL THE PRICES

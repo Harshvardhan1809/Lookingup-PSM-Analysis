@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var XLSX = require("xlsx");
 var max_data_value_calculator_1 = require("./max_data_value_calculator");
 var price_finder_js_1 = require("./price_finder.js");
+var answer_rate_calculator_1 = require("./answer_rate_calculator");
 //// READ ALL DATA FROM CSV 
 var unitPrice = 50;
 var data = XLSX.readFile("PSMrawdata.csv");
@@ -46,36 +47,10 @@ for (var _i = 0, _a = Object.entries(sheetData); _i < _a.length; _i++) {
 var maxValue = (0, max_data_value_calculator_1.default)(rsmData);
 var sampleSize = rsmData["data"].length;
 var scale = [];
-for (var i = 1; i < maxValue / unitPrice + 1; i++) {
+for (var i = 1; i < maxValue / unitPrice + 1; i++)
     scale.push(unitPrice * i);
-}
-// CALCULATE KAITOURITSU FOR EACH TYPE
-var answerRateData = {
-    answerRateExpensive: Array(scale.length).fill(0),
-    answerRateCheap: Array(scale.length).fill(0),
-    answerRateTooExpensive: Array(scale.length).fill(0),
-    answerRateTooCheap: Array(scale.length).fill(0),
-};
-for (var i = 0; i < sampleSize; i++) {
-    for (var j = scale.length - 1; j >= 0; j--) {
-        var _c = rsmData["data"][i], e = _c.expensiveData, c = _c.cheapData, te = _c.tooExpensiveData, tc = _c.tooCheapData;
-        if (c >= scale[j])
-            answerRateData["answerRateCheap"][j] += (1 / sampleSize) * 100;
-        if (e <= scale[j])
-            answerRateData["answerRateExpensive"][j] += (1 / sampleSize) * 100;
-        if (tc >= scale[j])
-            answerRateData["answerRateTooCheap"][j] += (1 / sampleSize) * 100;
-        if (te <= scale[j])
-            answerRateData["answerRateTooExpensive"][j] += (1 / sampleSize) * 100;
-    }
-}
-// round the result of all kaitouritsu to 3 digits
-for (var i = 0; i < scale.length; i++) {
-    answerRateData["answerRateCheap"][i] = Number(answerRateData["answerRateCheap"][i].toFixed(1));
-    answerRateData["answerRateTooCheap"][i] = Number(answerRateData["answerRateTooCheap"][i].toFixed(1));
-    answerRateData["answerRateExpensive"][i] = Number(answerRateData["answerRateExpensive"][i].toFixed(1));
-    answerRateData["answerRateTooExpensive"][i] = Number(answerRateData["answerRateTooExpensive"][i].toFixed(1));
-}
+//// CALCULATE ANSWER RATE FOR EACH TYPE
+var answerRateData = (0, answer_rate_calculator_1.default)(scale, sampleSize, rsmData);
 // FIND ALL THE PRICES
 var prices = (0, price_finder_js_1.default)(scale, answerRateData);
 var ideal = prices.idealPrice, compromise = prices.compromisePrice, highest = prices.highestPrice, lowest = prices.lowestPrice;
