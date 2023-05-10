@@ -23,3 +23,13 @@ type kakakuValues = {
     value: number
 }
 
+type rowRSMData = {
+    expensiveData : number,
+    cheapData : number,
+    tooExpensiveData : number,
+    tooCheapData : number,
+}
+
+type rsmData = {
+
+}
