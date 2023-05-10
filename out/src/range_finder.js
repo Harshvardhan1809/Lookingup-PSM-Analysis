@@ -8,5 +8,6 @@ var range_finder = function (scale, expensiveAnswerRate, cheapAnswerRate) {
             return upperIndex;
         }
     }
+    return -1;
 };
 exports.default = range_finder;

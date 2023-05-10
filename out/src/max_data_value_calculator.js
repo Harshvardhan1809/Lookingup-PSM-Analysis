@@ -10,7 +10,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var max_data_value_calculator = function (rsmData) {
-    var rowArray = __spreadArray([], rsmData["data"], true);
+    var rowArray = __spreadArray([], rsmData.data, true);
     var allValues = [];
     rowArray.forEach(function (element) {
         var e = element.expensiveData, c = element.cheapData, te = element.tooExpensiveData, tc = element.tooCheapData;
