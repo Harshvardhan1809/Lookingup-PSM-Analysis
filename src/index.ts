@@ -29,10 +29,10 @@ let rowRSMData: rowRSMData = {
 
 for (const [key, val] of Object.entries(sheetData)) {
   const value: sheetRowData = sheetData[key]
-  if (key[0] == 'B' && value.t === 'n') rowRSMData.expensiveData = value.v
-  else if (key[0] == 'C' && value.t === 'n') rowRSMData.cheapData = value.v
-  else if (key[0] == 'D' && value.t === 'n') rowRSMData.tooExpensiveData = value.v
-  else if (key[0] == 'E' && value.t === 'n') {
+  if (key[0] === 'B' && value.t === 'n') rowRSMData.expensiveData = value.v
+  else if (key[0] === 'C' && value.t === 'n') rowRSMData.cheapData = value.v
+  else if (key[0] === 'D' && value.t === 'n') rowRSMData.tooExpensiveData = value.v
+  else if (key[0] === 'E' && value.t === 'n') {
     rowRSMData.tooCheapData = value.v
     rsmData.data.push(rowRSMData)
     rowRSMData = {

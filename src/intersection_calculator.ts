@@ -1,5 +1,5 @@
 
-const intersection_calculator = (index: number, scale: number[], cheapAnswerRate: number[], expensiveAnswerRate: number[]) => {
+const intersection_calculator = (index: number, scale: number[], cheapAnswerRate: number[], expensiveAnswerRate: number[]): number => {
   // x3,x4 negative slope; cheap curve
 
   const y1 = expensiveAnswerRate[index - 1]

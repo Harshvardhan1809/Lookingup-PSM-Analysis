@@ -1,4 +1,4 @@
-const range_finder = (scale: number[], expensiveAnswerRate: number[], cheapAnswerRate: number[]) => {
+const range_finder = (scale: number[], expensiveAnswerRate: number[], cheapAnswerRate: number[]): number => {
   // if yasuikaitouritsu becomes greater than takaikaitouritsu; i.e. the parity switches
 
   for (let i = 0; i < scale.length; i++) {

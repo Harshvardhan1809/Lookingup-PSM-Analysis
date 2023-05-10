@@ -2,7 +2,7 @@ import { type answerRateAllData, type priceObject } from '../utilities/types'
 import intersection_calculator from './intersection_calculator'
 import range_finder from './range_finder'
 
-const price_finder = (scale: number[], answerRateData: answerRateAllData) => {
+const price_finder = (scale: number[], answerRateData: answerRateAllData): priceObject => {
   // find the 理想価格 - too cheap and too expensive
   const idealPriceIndex: number = range_finder(scale, answerRateData.answerRateTooCheap, answerRateData.answerRateTooExpensive)
   const idealPrice: number = intersection_calculator(idealPriceIndex, scale, answerRateData.answerRateTooCheap, answerRateData.answerRateTooExpensive)

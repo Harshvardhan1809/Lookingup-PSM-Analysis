@@ -1,7 +1,7 @@
 import { type answerRateAllData, type rsmData } from '../utilities/types'
 import round from './round_number'
 
-const answer_rate_calculator = (scale: number[], sampleSize: number, rsmData: rsmData) => {
+const answer_rate_calculator = (scale: number[], sampleSize: number, rsmData: rsmData): answerRateAllData => {
   const answerRateData: answerRateAllData = {
     answerRateExpensive: Array(scale.length).fill(0),
     answerRateCheap: Array(scale.length).fill(0),

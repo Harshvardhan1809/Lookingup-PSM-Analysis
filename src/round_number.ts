@@ -1,6 +1,6 @@
 
-const round = (value: number) => {
-  const answer = Math.round(value * 10) / 10
+const round = (value: number): number => {
+  const answer: number = Math.round(value * 10) / 10
   return answer
 }
 

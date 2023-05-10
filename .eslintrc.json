@@ -12,5 +12,6 @@
         "project": "./tsconfig.json"
     },
     "rules": {
+        "@typescript-eslint/naming-conv" : "off",
     }
 }
