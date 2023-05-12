@@ -59,7 +59,6 @@ for (let i = 1; i < maxValue / unitPrice + 1; i++) scale.push(unitPrice * i);
 
 /// / CALCULATE ANSWER RATE FOR EACH TYPE
 const answerRateData: answerRateAllData = answer_rate_calculator(scale, sampleSize, rsmData);
-console.log(answerRateData);
 
 // FIND ALL THE PRICES
 const prices: priceObject = price_finder(scale, answerRateData);

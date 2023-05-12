@@ -50,7 +50,6 @@ for (var i = 1; i < maxValue / unitPrice + 1; i++)
     scale.push(unitPrice * i);
 /// / CALCULATE ANSWER RATE FOR EACH TYPE
 var answerRateData = (0, answer_rate_calculator_1.default)(scale, sampleSize, rsmData);
-console.log(answerRateData);
 // FIND ALL THE PRICES
 var prices = (0, price_finder_js_1.default)(scale, answerRateData);
 var ideal = prices.idealPrice, compromise = prices.compromisePrice, highest = prices.highestPrice, lowest = prices.lowestPrice;
