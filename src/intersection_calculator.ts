@@ -1,4 +1,4 @@
-import { answerRateAllData } from "../utilities/types";
+import { answerRateAllData, types } from "../utilities/types";
 
 const range_finder = (scale: number[], expensiveAnswerRate: number[], cheapAnswerRate: number[]): number => {
 	// if cheapAnswerRate becomes greater than expensiveAnswerRate; i.e. the parity switches
@@ -13,7 +13,7 @@ const range_finder = (scale: number[], expensiveAnswerRate: number[], cheapAnswe
 	return -1;
 };
 
-const intersection_calculator = (scale: number[], answerRateData: answerRateAllData, type: string): number => {
+const intersection_calculator = (scale: number[], answerRateData: answerRateAllData, type: types): number => {
 	// x3,x4 negative slope; cheap curve
 
 	let cheapAnswerRate: number[];

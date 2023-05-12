@@ -39,4 +39,6 @@ type priceObject = {
 	lowestPrice: number;
 };
 
-export { sheetRowData, sheetDataType, rowRSMData, rsmData, answerRateAllData, priceObject };
+type types = "ideal" | "compromise" | "highest" | "lowest";
+
+export { sheetRowData, sheetDataType, rowRSMData, rsmData, answerRateAllData, priceObject, types };
