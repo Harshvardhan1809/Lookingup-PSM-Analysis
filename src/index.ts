@@ -2,14 +2,7 @@ import maxDataValueCalculator from "./maxDataValueCalculator";
 import priceFinder from "./priceFinder.js";
 import answerRateCalculator from "./answerRateCalculator";
 
-import {
-	type SheetRowData,
-	type SheetDataType,
-	RowPsmData,
-	PsmData,
-	type AnswerRateAllData,
-	type PriceObject,
-} from "./../utilities/types";
+import { SheetRowData, SheetDataType, RowPsmData, PsmData, AnswerRateAllData, PriceObject } from "./../utilities/types";
 
 const XLSX = require("xlsx");
 

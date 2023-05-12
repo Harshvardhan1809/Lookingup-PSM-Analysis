@@ -1,4 +1,4 @@
-import { type AnswerRateAllData, type PriceObject } from "../utilities/types";
+import { AnswerRateAllData, PriceObject } from "../utilities/types";
 import intersectionCalculator from "./intersectionCalculator";
 
 const priceFinder = (scale: number[], answerRateData: AnswerRateAllData): PriceObject => {

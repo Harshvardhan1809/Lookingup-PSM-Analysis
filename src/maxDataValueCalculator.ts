@@ -1,4 +1,4 @@
-import { type PsmData } from "../utilities/types";
+import { PsmData } from "../utilities/types";
 
 const maxDataValueCalculator = (psmData: PsmData): number => {
 	const rowArray = [...psmData.data];

@@ -1,4 +1,4 @@
-import { type AnswerRateAllData, type PsmData } from "../utilities/types";
+import { AnswerRateAllData, PsmData } from "../utilities/types";
 import round from "./roundNumber";
 
 const answerRateCalculator = (scale: number[], sampleSize: number, psmData: PsmData): AnswerRateAllData => {
