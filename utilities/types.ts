@@ -17,10 +17,6 @@ type RowPsmData = {
 	tooCheapData: number;
 };
 
-type PsmData = {
-	data: RowPsmData[];
-} & PriceObject;
-
 type AnswerRateAllData = {
 	answerRateExpensive: number[];
 	answerRateCheap: number[];
@@ -42,4 +38,4 @@ type Coordinate = {
 	y: number;
 };
 
-export { SheetRowData, SheetDataType, RowPsmData, PsmData, AnswerRateAllData, PriceObject, Types, Coordinate };
+export { SheetRowData, SheetDataType, RowPsmData, AnswerRateAllData, PriceObject, Types, Coordinate };

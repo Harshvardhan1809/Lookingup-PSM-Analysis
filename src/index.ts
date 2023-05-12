@@ -1,8 +1,8 @@
 import maxDataValueCalculator from "./maxDataValueCalculator";
-import priceFinder from "./priceFinder.js";
+import priceFinder from "./priceFinder";
 import answerRateCalculator from "./answerRateCalculator";
 
-import { SheetRowData, SheetDataType, RowPsmData, PsmData, AnswerRateAllData, PriceObject } from "./../utilities/types";
+import { SheetRowData, SheetDataType, RowPsmData, AnswerRateAllData, PriceObject } from "./../utilities/types";
 
 const XLSX = require("xlsx");
 
@@ -12,13 +12,7 @@ const data = XLSX.readFile("PSMrawdata.csv");
 const sheetData: SheetDataType = data.Sheets.Sheet1;
 // console.log(sheetData);
 
-const psmData: PsmData = {
-	data: [],
-	idealPrice: 0,
-	compromisePrice: 0,
-	highestPrice: 0,
-	lowestPrice: 0,
-};
+const psmData: RowPsmData[] = [];
 
 let rowPsmData: RowPsmData = {
 	expensiveData: 0,
@@ -34,7 +28,7 @@ for (const [key] of Object.entries(sheetData)) {
 	else if (key[0] === "D" && value.t === "n") rowPsmData.tooExpensiveData = value.v;
 	else if (key[0] === "E" && value.t === "n") {
 		rowPsmData.tooCheapData = value.v;
-		psmData.data.push(rowPsmData);
+		psmData.push(rowPsmData);
 		rowPsmData = {
 			expensiveData: 0,
 			cheapData: 0,
@@ -46,7 +40,7 @@ for (const [key] of Object.entries(sheetData)) {
 
 /// / MAKE THE SCALE FOR THE X-AXIS
 const maxValue = maxDataValueCalculator(psmData);
-const sampleSize = psmData.data.length;
+const sampleSize = psmData.length;
 const scale: number[] = [];
 for (let i = 1; i < maxValue / unitPrice + 1; i++) scale.push(unitPrice * i);
 
