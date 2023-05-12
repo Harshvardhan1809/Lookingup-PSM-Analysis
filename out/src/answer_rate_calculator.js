@@ -23,10 +23,10 @@ var answer_rate_calculator = function (scale, sampleSize, rsmData) {
     }
     // round the result of all kaitouritsu to 3 digits
     for (var i = 0; i < scale.length; i++) {
-        answerRateData.answerRateCheap[i] = (0, round_number_1.default)(answerRateData.answerRateCheap[i]);
-        answerRateData.answerRateTooCheap[i] = (0, round_number_1.default)(answerRateData.answerRateTooCheap[i]);
-        answerRateData.answerRateExpensive[i] = (0, round_number_1.default)(answerRateData.answerRateExpensive[i]);
-        answerRateData.answerRateTooExpensive[i] = (0, round_number_1.default)(answerRateData.answerRateTooExpensive[i]);
+        answerRateData.answerRateCheap[i] = (0, round_number_1.default)(answerRateData.answerRateCheap[i], 1);
+        answerRateData.answerRateTooCheap[i] = (0, round_number_1.default)(answerRateData.answerRateTooCheap[i], 1);
+        answerRateData.answerRateExpensive[i] = (0, round_number_1.default)(answerRateData.answerRateExpensive[i], 1);
+        answerRateData.answerRateTooExpensive[i] = (0, round_number_1.default)(answerRateData.answerRateTooExpensive[i], 1);
     }
     return answerRateData;
 };

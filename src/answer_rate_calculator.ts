@@ -21,10 +21,10 @@ const answer_rate_calculator = (scale: number[], sampleSize: number, rsmData: rs
 
 	// round the result of all kaitouritsu to 3 digits
 	for (let i = 0; i < scale.length; i++) {
-		answerRateData.answerRateCheap[i] = round(answerRateData.answerRateCheap[i]);
-		answerRateData.answerRateTooCheap[i] = round(answerRateData.answerRateTooCheap[i]);
-		answerRateData.answerRateExpensive[i] = round(answerRateData.answerRateExpensive[i]);
-		answerRateData.answerRateTooExpensive[i] = round(answerRateData.answerRateTooExpensive[i]);
+		answerRateData.answerRateCheap[i] = round(answerRateData.answerRateCheap[i], 1);
+		answerRateData.answerRateTooCheap[i] = round(answerRateData.answerRateTooCheap[i], 1);
+		answerRateData.answerRateExpensive[i] = round(answerRateData.answerRateExpensive[i], 1);
+		answerRateData.answerRateTooExpensive[i] = round(answerRateData.answerRateTooExpensive[i], 1);
 	}
 
 	return answerRateData;
