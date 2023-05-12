@@ -1,22 +1,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var max_data_value_calculator_1 = require("./max_data_value_calculator");
-var price_finder_js_1 = require("./price_finder.js");
-var answer_rate_calculator_1 = require("./answer_rate_calculator");
+var maxDataValueCalculator_1 = require("./maxDataValueCalculator");
+var priceFinder_js_1 = require("./priceFinder.js");
+var answerRateCalculator_1 = require("./answerRateCalculator");
 var XLSX = require("xlsx");
 //// READ ALL DATA FROM CSV
 var unitPrice = 50;
 var data = XLSX.readFile("PSMrawdata.csv");
 var sheetData = data.Sheets.Sheet1;
 // console.log(sheetData);
-var rsmData = {
+var psmData = {
     data: [],
     idealPrice: 0,
     compromisePrice: 0,
     highestPrice: 0,
     lowestPrice: 0,
 };
-var rowRSMData = {
+var rowPsmData = {
     expensiveData: 0,
     cheapData: 0,
     tooExpensiveData: 0,
@@ -26,15 +26,15 @@ for (var _i = 0, _a = Object.entries(sheetData); _i < _a.length; _i++) {
     var key = _a[_i][0];
     var value = sheetData[key];
     if (key[0] === "B" && value.t === "n")
-        rowRSMData.expensiveData = value.v;
+        rowPsmData.expensiveData = value.v;
     else if (key[0] === "C" && value.t === "n")
-        rowRSMData.cheapData = value.v;
+        rowPsmData.cheapData = value.v;
     else if (key[0] === "D" && value.t === "n")
-        rowRSMData.tooExpensiveData = value.v;
+        rowPsmData.tooExpensiveData = value.v;
     else if (key[0] === "E" && value.t === "n") {
-        rowRSMData.tooCheapData = value.v;
-        rsmData.data.push(rowRSMData);
-        rowRSMData = {
+        rowPsmData.tooCheapData = value.v;
+        psmData.data.push(rowPsmData);
+        rowPsmData = {
             expensiveData: 0,
             cheapData: 0,
             tooExpensiveData: 0,
@@ -43,15 +43,15 @@ for (var _i = 0, _a = Object.entries(sheetData); _i < _a.length; _i++) {
     }
 }
 /// / MAKE THE SCALE FOR THE X-AXIS
-var maxValue = (0, max_data_value_calculator_1.default)(rsmData);
-var sampleSize = rsmData.data.length;
+var maxValue = (0, maxDataValueCalculator_1.default)(psmData);
+var sampleSize = psmData.data.length;
 var scale = [];
 for (var i = 1; i < maxValue / unitPrice + 1; i++)
     scale.push(unitPrice * i);
 /// / CALCULATE ANSWER RATE FOR EACH TYPE
-var answerRateData = (0, answer_rate_calculator_1.default)(scale, sampleSize, rsmData);
+var answerRateData = (0, answerRateCalculator_1.default)(scale, sampleSize, psmData);
 // FIND ALL THE PRICES
-var prices = (0, price_finder_js_1.default)(scale, answerRateData);
+var prices = (0, priceFinder_js_1.default)(scale, answerRateData);
 var ideal = prices.idealPrice, compromise = prices.compromisePrice, highest = prices.highestPrice, lowest = prices.lowestPrice;
 console.log("lowestPrice", lowest); // correct 246
 console.log("highestPrice", highest); // 293

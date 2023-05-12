@@ -1,44 +1,45 @@
-type sheetRowData = {
+type SheetRowData = {
 	t: string;
 	w?: string;
 	v: number;
 };
 
-type sheetDataType = {
-	[key: string]: sheetRowData;
+type SheetDataType = {
+	[key: string]: SheetRowData;
 };
 
 // remodel types to exploit the capabilities of typescript
 
-type rowRSMData = {
+type RowPsmData = {
 	expensiveData: number;
 	cheapData: number;
 	tooExpensiveData: number;
 	tooCheapData: number;
 };
 
-type rsmData = {
-	data: rowRSMData[];
-	idealPrice: number;
-	compromisePrice: number;
-	highestPrice: number;
-	lowestPrice: number;
-};
+type PsmData = {
+	data: RowPsmData[];
+} & PriceObject;
 
-type answerRateAllData = {
+type AnswerRateAllData = {
 	answerRateExpensive: number[];
 	answerRateCheap: number[];
 	answerRateTooExpensive: number[];
 	answerRateTooCheap: number[];
 };
 
-type priceObject = {
+type PriceObject = {
 	idealPrice: number;
 	compromisePrice: number;
 	highestPrice: number;
 	lowestPrice: number;
 };
 
-type types = "ideal" | "compromise" | "highest" | "lowest";
+type Types = "ideal" | "compromise" | "highest" | "lowest";
 
-export { sheetRowData, sheetDataType, rowRSMData, rsmData, answerRateAllData, priceObject, types };
+type Coordinate = {
+	x: number;
+	y: number;
+};
+
+export { SheetRowData, SheetDataType, RowPsmData, PsmData, AnswerRateAllData, PriceObject, Types, Coordinate };

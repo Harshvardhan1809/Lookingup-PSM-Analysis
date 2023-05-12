@@ -9,8 +9,8 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     return to.concat(ar || Array.prototype.slice.call(from));
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var max_data_value_calculator = function (rsmData) {
-    var rowArray = __spreadArray([], rsmData.data, true);
+var maxDataValueCalculator = function (psmData) {
+    var rowArray = __spreadArray([], psmData.data, true);
     var allValues = [];
     rowArray.forEach(function (element) {
         var e = element.expensiveData, c = element.cheapData, te = element.tooExpensiveData, tc = element.tooCheapData;
@@ -19,4 +19,4 @@ var max_data_value_calculator = function (rsmData) {
     var maxValue = Math.max.apply(Math, allValues);
     return maxValue;
 };
-exports.default = max_data_value_calculator;
+exports.default = maxDataValueCalculator;

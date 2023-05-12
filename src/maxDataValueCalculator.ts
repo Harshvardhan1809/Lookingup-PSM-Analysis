@@ -1,7 +1,7 @@
-import { type rsmData } from "../utilities/types";
+import { type PsmData } from "../utilities/types";
 
-const max_data_value_calculator = (rsmData: rsmData): number => {
-	const rowArray = [...rsmData.data];
+const maxDataValueCalculator = (psmData: PsmData): number => {
+	const rowArray = [...psmData.data];
 	const allValues: number[] = [];
 	rowArray.forEach((element) => {
 		const { expensiveData: e, cheapData: c, tooExpensiveData: te, tooCheapData: tc } = element;
@@ -12,4 +12,4 @@ const max_data_value_calculator = (rsmData: rsmData): number => {
 	return maxValue;
 };
 
-export default max_data_value_calculator;
+export default maxDataValueCalculator;

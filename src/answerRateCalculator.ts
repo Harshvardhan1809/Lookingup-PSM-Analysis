@@ -1,8 +1,8 @@
-import { type answerRateAllData, type rsmData } from "../utilities/types";
-import round from "./round_number";
+import { type AnswerRateAllData, type PsmData } from "../utilities/types";
+import round from "./roundNumber";
 
-const answer_rate_calculator = (scale: number[], sampleSize: number, rsmData: rsmData): answerRateAllData => {
-	const answerRateData: answerRateAllData = {
+const answerRateCalculator = (scale: number[], sampleSize: number, psmData: PsmData): AnswerRateAllData => {
+	const answerRateData: AnswerRateAllData = {
 		answerRateExpensive: Array(scale.length).fill(0),
 		answerRateCheap: Array(scale.length).fill(0),
 		answerRateTooExpensive: Array(scale.length).fill(0),
@@ -11,7 +11,7 @@ const answer_rate_calculator = (scale: number[], sampleSize: number, rsmData: rs
 
 	for (let i = 0; i < sampleSize; i++) {
 		for (let j = scale.length - 1; j >= 0; j--) {
-			const { expensiveData: e, cheapData: c, tooExpensiveData: te, tooCheapData: tc } = rsmData.data[i];
+			const { expensiveData: e, cheapData: c, tooExpensiveData: te, tooCheapData: tc } = psmData.data[i];
 			if (c >= scale[j]) answerRateData.answerRateCheap[j] += (1 / sampleSize) * 100;
 			if (e <= scale[j]) answerRateData.answerRateExpensive[j] += (1 / sampleSize) * 100;
 			if (tc >= scale[j]) answerRateData.answerRateTooCheap[j] += (1 / sampleSize) * 100;
@@ -30,4 +30,4 @@ const answer_rate_calculator = (scale: number[], sampleSize: number, rsmData: rs
 	return answerRateData;
 };
 
-export default answer_rate_calculator;
+export default answerRateCalculator;
